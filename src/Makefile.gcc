@@ -1,0 +1,40 @@
+MAKE=make
+MAKEFLAGS=
+
+CC=g++
+CFLAGS=$(WARNS) -pedantic $(GDB) $(ARCH) $(DEFS) $(INCDIRS) #-ansi
+MODULE_CFLAGS=-fPIC
+WARNS=-Wall -Wstrict-prototypes #-Weffc++
+GDB=-g -ggdb3 -gstabs+
+DEFS=$(COMMON_DEFS)
+ARCH=
+
+LD=$(CC)
+LDFLAGS=$(ARCH) -rdynamic #-nodefaultlibs
+MODULE_LDFLAGS=$(ARCH) \
+-shared	## use this for non-solaris systems \
+-G	## use this for solaris systems \
+$(NULL)
+## never use '-nostartfiles' or the ModuleFactory instance in the module will
+## not be instantiated and the module will be non-existent to the
+## deceptiond-framwork !
+
+INCDIRS=-I. \
+## use this for linux gcc-2.95.4 \
+-I$$HOME/tmp/chroot/usr/include	## use this for linux gcc-3.2 \
+-I$$HOME/tmp/chroot/opt/sfw/include	## use this for solaris gcc-3.2 \
+$(NULL)
+
+LIBDIRS=\
+## use this for linux gcc-2.95.4 \
+-L$$HOME/tmp/chroot/usr/lib ## use this for linux gcc-3.2 \
+-L$$HOME/tmp/chroot/opt/sfw/lib	## use this for solaris gcc-3.2 \
+$(NULL)
+
+LIBS=$(COMMON_LIBS) \
+## use this for linux gcc \
+-lnsl -lsocket -lresolv ## use this for solaris gcc \
+#-lpthread ## xerces may need extra linking to lpthread
+$(NULL)
+
+include Makefile.inc

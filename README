@@ -1,0 +1,69 @@
+System Voraussetzungen:
+-----------------------
+
+um die aktuelle testversion des deceptiond zu kompilieren und laufen zu
+lassen wird die libxerces >= 2.1.0 [1] und pcre [2] vorausgesetzt.
+fuer die macintosh plattform wird desweitern die dlcompat [3] benoetigt.
+
+der source code ist bisher unter linux und freebsd mit den gcc versionen
+2.95.x und 3.2.x, dem intel compiler 7.0 [4] sowie unter sun solaris9
+mit dem sun forte compiler [5] getestet worden.
+
+
+
+Allgemeine Hinweise:
+--------------------
+unter doc/ findet sich die noch unvollstaendige doxygen html
+dokumentation zum deceptiond.
+sowie eine grobe beschreibung zum programm ablauf (programm_ablauf.txt).
+
+unter src/ findet sich der quellcode.
+
+aktuelle versionen und weitere dokumente sind online verfuegbar:
+http://unit22.in-berlin.de/diploma/
+
+der neueste stand kann ueber cvs eingesehen werden:
+http://unit22.in-berlin.de/cgi-bin/viewcvs.cgi/diploma/
+
+
+
+Compile Hinweise:
+-----------------
+
+Makefile.inc	 enthaelt gemeinsame compile anweisungen
+Makefile.gcc	 enthaelt compile anweisungen fuer gcc
+Makefile.icc	 enthaelt compile anweisungen fuer intel icc 
+Makefile.spro	 enthaelt compile anweisungen fuer sun solaris sun forte
+Makefile.osx	 enthaelt compile anweisungen fuer Macintosh OS X
+
+in den jeweiligen compiler spezifischen Makefiles sind die
+make-variablen INCDIRS (include directories), LIBDIRS (library
+directories), und CC (pfad zum compiler) an die lokalen gegebenheiten
+anzupassen,  da bisher in diesem projekt auf autoconf verzichtet wurde.
+kommentare im Makefiles geben aufschluss ueber eventuelle besonderheiten.
+
+% make -f Makefile.$CC all
+sollte die sourcen zu dem program conftest uebersetzen.
+je nach compiler werden diverse warnungen ausgegeben, die allerdings
+momentan vernachlaessigt werden koennen.
+nach erfolgreichem kompilieren finden sich ebenfalls zwei shared objects
+in modules/.
+
+bevor die testversion des deceptiond gestartet werden kann ist in der
+datei deceptiond.xml innerhalb des tags <moduledir> der absolute pfad
+zum modules/ verzeichnis (inkl. abschliessendem '/') anzugeben.
+
+sobald der deceptiond mit einem simplen % ./conftest; gestartet worden
+ist, erscheinen auf dem terminal diverse status meldungen. sobald
+'waiting for connect' erscheint, kann per % telnet localhost 10001; die
+bisherige funktionalitaet getestet werden. komischerweise scheint die
+socket implementierung unter solaris nicht richtig zu funktionieren, so
+dass das testdatenpaket mit dem string 'welcome to deceptiond' nicht
+uebermittelt wird.
+
+
+[1] http://xml.apache.org/xerces-c/
+[2] http://www.pcre.org/
+[3] http://www.opendarwin.org/projects/dlcompat/
+[4] http://www.intel.com/software/products/compilers/clin/
+[5] http://wwws.sun.com/software/sundev/suncc/buy/index.html

@@ -1,0 +1,21 @@
+MAKE=make
+MAKEFLAGS=
+
+CC=/opt/SUNWspro/bin/CC #-temp=/tmp/
+CFLAGS=$(WARNS) $(GDB) $(ARCH) $(DEFS) $(INCDIRS) -xcheck
+MODULE_CFLAGS=-KPIC
+WARNS=+w +w2
+GDB=-g
+DEFS=$(COMMON_DEFS)
+ARCH=-xarch=v7
+
+LD=$(CC)
+LDFLAGS=$(ARCH) # -Bdynamic -dy
+MODULE_LDFLAGS=$(ARCH) -G #-i
+
+INCDIRS=-I. -I$$HOME/tmp/chroot/opt/spro/include
+LIBDIRS=-L$$HOME/tmp/chroot/opt/spro/lib
+
+LIBS=$(COMMON_LIBS) -lnsl -lsocket -lresolv
+
+include Makefile.inc

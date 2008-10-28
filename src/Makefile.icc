@@ -1,0 +1,28 @@
+MAKE=make
+MAKEFLAGS=
+
+CC=$$HOME/tmp/chroot/opt/intel/compiler70/ia32/bin/icc
+CFLAGS=$(WARNS) $(GDB) $(ARCH) $(DEFS) $(INCDIRS)
+MODULE_CFLAGS=-fPIC
+WARNS=-Wall
+GDB=-g
+DEFS=$(COMMON_DEFS)
+ARCH=
+
+LD=$(CC)
+LDFLAGS=$(ARCH) -rdynamic
+MODULE_LDFLAGS=$(ARCH) -shared 
+
+INCDIRS=\
+-I./ ## \
+-I$$HOME/tmp/chroot/opt/intel/compiler70/ia32/include ##\
+$(NULL)
+
+LIBDIRS=\
+-L$$HOME/tmp/chroot/usr/lib ##\
+-L$$HOME/tmp/chroot/opt/intel/compiler70/ia32/lib ## \
+$(NULL)
+
+LIBS=$(COMMON_LIBS)
+
+include Makefile.inc

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<deceptiond version="0.1">
+	<user>nobody</user>
+	<group>nogroup</group>
+	<chroot>/var/tmp</chroot>
+	<logfile>deceptiond.log</logfile>
+	<moduledir>./modules/</moduledir>
+	<!-- enable capture engine -->
+	<capture enable="no">eth0</capture>
+
+	<host ipaddr="127.0.0.1">
+		<module name="dtkScript" filename="dtk-script.so"
+			option="dtkscriptdir=./dtkscripts/"
+			>
+			<port no="11" />
+			<port no="17" />
+			<port no="19" />
+			<port no="21" />
+			<port no="23" />
+			<port no="25" />
+			<port no="37" />
+			<port no="53" />
+			<port no="65" />
+			<port no="66" />
+			<port no="69" />
+			<port no="79" />
+			<port no="80" />
+			<port no="110" />
+			<port no="111" />
+			<port no="365" />
+			<port no="421" />
+			<port no="507" />
+			<port no="508" />
+			<port no="512" />
+			<port no="513" />
+			<port no="514" />
+			<port no="893" />
+			<port no="1111" />
+			<port no="2049" />
+			<port no="5631" />
+			<port no="5632" />
+			<port no="5699" />
+			<port no="6001" />
+			<port no="8000" />
+			<port no="10000" />
+			<port no="10572" />
+			<port no="12000" />
+			<port no="12345" />
+			<port no="12346" />
+			<port no="14000" />
+			<port no="17027" />
+			<port no="28000" />
+			<port no="20021" />
+			<port no="31337" />
+		</module>
+	</host>
+
+</deceptiond>
